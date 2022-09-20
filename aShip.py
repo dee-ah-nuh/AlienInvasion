@@ -3,9 +3,8 @@
 Created by dee-ah-nuh
 
 """
+
 import time
-import pandas as pd
-import numpy as np
 import pygame
 import sys
 
@@ -46,11 +45,11 @@ class AlienInvasion:
     def __init__(self):
         '''initializing the game , create resources '''
         pygame.init()
-        self.screen = pygame.display.set_mode((1200, 800))
-        pygame.display.set_caption("Alien Invasion")
-        
+        self.settings = Settings()
         '''set background color'''
-        self.bg_color = (230, 230, 230)
+        
+        self.screen = pygame.display.set_mode(self.settings.screen_width, self.settings.screen_height)
+        pygame.display.set_caption("Alien Invasion")
     
     def run_game(self):
         '''main loop for the game'''
@@ -67,14 +66,20 @@ if __name__ =='__main__':
     ai = AlienInvasion()
     ai.run_game()
         
-        
+         
 # =============================================================================
 #  creating a setting class
 # =============================================================================    
         
 class Settings():
     '''storing all setting for alien invasion '''
-        
+    def __init___(self, ai_game):
+           self.screen = ai_game.screen    
+           self.screen_rect = ai_game
+           
+           '''Load the ship image '''
+           self.image = pygame.image.load('Images/ship1.png')
+           self.rect = self.image.get_rect()
         
         
         
